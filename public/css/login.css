@@ -1,0 +1,199 @@
+/*
+ * login.css
+ * Styles for the login page background & card — Futuristic Glassmorphism
+ */
+
+/* ---- Base ---- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #050510;
+    font-family: 'Inclusive Sans', sans-serif;
+}
+
+/* ---- Glass Card ---- */
+.glass-card {
+    background: rgba(8, 8, 30, 0.55);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    transition: box-shadow 0.4s ease;
+}
+
+/* Glowing border via pseudo-element — no DOM changes needed */
+.glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg,
+        rgba(99, 102, 241, 0.7) 0%,
+        rgba(168, 85, 247, 0.4) 40%,
+        rgba(99, 102, 241, 0.15) 70%,
+        rgba(168, 85, 247, 0.5) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+.glass-card:hover {
+    box-shadow:
+        0 0 40px rgba(99, 102, 241, 0.2),
+        0 0 80px rgba(168, 85, 247, 0.08),
+        0 32px 64px rgba(0, 0, 0, 0.4);
+}
+
+/* ---- Title text — bright on dark bg ---- */
+.glass-title {
+    color: #e0e7ff;
+    text-shadow: 0 0 30px rgba(129, 140, 248, 0.5);
+}
+
+/* ---- Label ---- */
+.glass-label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: rgba(199, 210, 254, 0.75);
+    margin-bottom: 0.5rem;
+    transition: color 0.2s ease;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.group:focus-within .glass-label {
+    color: #a5b4fc;
+}
+
+/* ---- Input Fields ---- */
+.glass-input {
+    width: 100%;
+    padding: 0.875rem 1.25rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    border-radius: 0.875rem;
+    color: #e0e7ff;
+    font-size: 0.9375rem;
+    outline: none;
+    transition: all 0.25s ease;
+    caret-color: #818cf8;
+}
+
+.glass-input::placeholder {
+    color: rgba(148, 163, 184, 0.45);
+}
+
+.glass-input:focus {
+    background: rgba(99, 102, 241, 0.08);
+    border-color: rgba(129, 140, 248, 0.7);
+    box-shadow:
+        0 0 0 3px rgba(99, 102, 241, 0.15),
+        0 0 20px rgba(99, 102, 241, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Password field needs right-padding for toggle icon */
+.glass-input-password {
+    padding-right: 3rem;
+}
+
+/* ---- Eye toggle button ---- */
+.eye-toggle {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(148, 163, 184, 0.5);
+    transition: color 0.2s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+    line-height: 0;
+}
+
+.eye-toggle:hover {
+    color: #818cf8;
+}
+
+/* ---- Submit Button ---- */
+.glass-btn {
+    width: 100%;
+    padding: 0.9375rem 1.5rem;
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    letter-spacing: 0.03em;
+    border: none;
+    border-radius: 0.875rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow:
+        0 4px 15px rgba(79, 70, 229, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.glass-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: inherit;
+}
+
+.glass-btn:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 25px rgba(79, 70, 229, 0.5),
+        0 0 40px rgba(124, 58, 237, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.glass-btn:hover::after {
+    opacity: 1;
+}
+
+.glass-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+/* ---- Alert banners ---- */
+.alert-success {
+    background: rgba(6, 95, 70, 0.3);
+    border: 1px solid rgba(110, 231, 183, 0.3);
+    color: #6ee7b7;
+    padding: 10px 16px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    backdrop-filter: blur(8px);
+}
+
+.alert-error {
+    background: rgba(153, 27, 27, 0.3);
+    border: 1px solid rgba(252, 165, 165, 0.3);
+    color: #fca5a5;
+    padding: 10px 16px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    backdrop-filter: blur(8px);
+}
